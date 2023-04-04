@@ -21,6 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @RestController
+@CrossOrigin()
 public class AuthenticationController {
     private final AppUserService appUserService;
     private final AuthenticationManager authenticationManager;

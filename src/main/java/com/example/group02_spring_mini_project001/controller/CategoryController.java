@@ -24,7 +24,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
-@SecurityRequirement(name = "bearerAuth")
+//@SecurityRequirement(name = "bearerAuth")
+@CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
     private final CategoryService categoryService;
 

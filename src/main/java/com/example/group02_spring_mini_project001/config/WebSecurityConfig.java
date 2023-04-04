@@ -38,7 +38,7 @@ public class WebSecurityConfig {
 
         //<< implementing this interface
 
-        http
+        http.cors().and()
                 .csrf().disable()
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/user").hasRole("USER")
