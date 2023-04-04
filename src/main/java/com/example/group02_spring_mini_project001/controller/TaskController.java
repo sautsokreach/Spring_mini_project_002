@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 //@SecurityRequirement(name = "bearerAuth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin()
 public class TaskController {
     private final TaskService taskService;
 
