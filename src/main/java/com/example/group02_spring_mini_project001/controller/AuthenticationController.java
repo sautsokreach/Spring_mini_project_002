@@ -64,6 +64,11 @@ public class AuthenticationController {
         regex = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}";
         pattern = Pattern.compile(regex);
         boolean valpassword = pattern.matcher(authenticationRequest.getPassword()).find();
+        final UserDetails userDetails = appUserService
+                .loadUserByUsername(authenticationRequest.getEmail());
+        if(userDetails==null){
+            throw new EmailException();
+        }
         if(!valEmail){
             throw new EmailException();
         }
@@ -77,8 +82,6 @@ public class AuthenticationController {
             throw new BadCredentialsException("Account is Not Correct");
         }
 
-        final UserDetails userDetails = appUserService
-                .loadUserByUsername(authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
         AppUser appUser = (AppUser) userDetails;
         ApiResponse<JwtResponse> response = ApiResponse.<JwtResponse>builder()
