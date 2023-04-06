@@ -1,7 +1,5 @@
 package com.example.group02_spring_mini_project001.service;
 
-import com.example.group02_spring_mini_project001.exception.EmailException;
-import com.example.group02_spring_mini_project001.exception.NotFoundIDException;
 import com.example.group02_spring_mini_project001.repository.AppUserRepository;
 import com.example.group02_spring_mini_project001.userModel.AppUser;
 import com.example.group02_spring_mini_project001.userModel.AppUserDto;
@@ -26,11 +24,11 @@ public class AppUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            UserDetails userDetails = appUserRepository.findByEmail(username);
-           if(userDetails == null){
-               throw new EmailException();
-           }
-            return userDetails;
+
+        return appUserRepository.findByEmail(username);
+    }
+    public UserDetails checkUser(String username){
+        return appUserRepository.findByEmail(username);
     }
 
     public AppUserDto register(AppUserRequest appUserRequest) {
