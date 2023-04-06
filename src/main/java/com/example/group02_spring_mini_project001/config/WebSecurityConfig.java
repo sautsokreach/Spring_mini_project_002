@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/user").hasRole("USER")
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/bye").permitAll()
-                        .requestMatchers("/api/v1/register","/v3/api-docs/**","/api/v1/login",
+                        .requestMatchers("/api/v1/register","/v3/api-docs/**","/api/v1/login","http://springminiproject002-production.up.railway.app/api/v1/login",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html").permitAll()
                         .anyRequest()
