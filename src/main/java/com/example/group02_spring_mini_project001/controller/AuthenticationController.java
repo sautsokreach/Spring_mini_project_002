@@ -71,7 +71,8 @@ public class AuthenticationController {
         if(!valpassword){
             throw new PasswordException();
         }
-
+        final UserDetails userDetails = appUserService
+                .loadUserByUsername(authenticationRequest.getEmail());
         try {
             authenticate(authenticationRequest.getEmail(),authenticationRequest.getPassword());
         } catch (Exception e) {
