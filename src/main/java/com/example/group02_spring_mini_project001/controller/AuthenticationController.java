@@ -2,6 +2,7 @@ package com.example.group02_spring_mini_project001.controller;
 
 import com.example.group02_spring_mini_project001.exception.EmailException;
 import com.example.group02_spring_mini_project001.exception.PasswordException;
+import com.example.group02_spring_mini_project001.exception.WrongPasswordException;
 import com.example.group02_spring_mini_project001.jwt.JwtTokenUtil;
 import com.example.group02_spring_mini_project001.service.AppUserService;
 import com.example.group02_spring_mini_project001.userModel.*;
@@ -76,7 +77,7 @@ public class AuthenticationController {
         try {
             authenticate(authenticationRequest.getEmail(),authenticationRequest.getPassword());
         } catch (Exception e) {
-            throw new BadCredentialsException("Account is Not Correct");
+            throw new WrongPasswordException();
         }
 
         final String token = jwtTokenUtil.generateToken(userDetails);

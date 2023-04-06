@@ -46,6 +46,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(WrongPasswordException.class)
+    ProblemDetail wrongPasswordException(WrongPasswordException e){
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST,e.getMessage());
+    }
+
 //    protected ResponseEntity<Object> handleMethodArgumentNotValid(
 //            MethodArgumentNotValidException ex,
 //            HttpHeaders headers, HttpStatus status, WebRequest request) {
