@@ -71,6 +71,12 @@ public class AuthenticationController {
             throw new PasswordException();
         }
 
+        try {
+            authenticate(authenticationRequest.getEmail(),authenticationRequest.getPassword());
+        } catch (Exception e) {
+            throw new BadCredentialsException("Account is Not Correct");
+        }
+
         final UserDetails userDetails = appUserService
                 .loadUserByUsername(authenticationRequest.getEmail());
         final String token = jwtTokenUtil.generateToken(userDetails);
@@ -97,9 +103,9 @@ public class AuthenticationController {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
-//            throw new Exception("USER_DISABLED", e);
+            throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
-//            throw new Exception("INVALID_CREDENTIALS", e);
+            throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
 
