@@ -52,7 +52,7 @@ public interface TaskRepository {
                 description=#{task.description}, 
                 date=#{task.date},
                 status=#{task.status},
-                user_Id=#{task.userId},
+                user_Id=#{userId},
                 category_id=#{task.categoryId}
             where id = #{id}  and user_id = #{userId}
             returning *  
